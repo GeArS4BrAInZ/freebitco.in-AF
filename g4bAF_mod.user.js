@@ -1,7 +1,5 @@
 // ==UserScript==
 // @match        https://freebitco.in/*
-// @gith// ==UserScript==
-// @match        https://freebitco.in/*
 // @github       http://github.com/GeArS4BrAInS
 // @version      1.0
 // @description  My local pub accepts btc : : 1KALCqcKgdttda9xJWqwSYeBPtLtYR9C9h
