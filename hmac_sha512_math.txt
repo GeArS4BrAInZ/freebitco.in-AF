@@ -1,0 +1,27 @@
+// random sha512
+private const decimal DIVIDER = (uint.MaxValue - 1)/100M;
+public static decimal Random0To100(string secret, string server, string client)
+{
+    // add 3 strings together, calculate SHA512 hash
+    var str = secret + server + client;
+    var byt = Encoding.ASCII.GetBytes(str);
+    byte[] hashByte = null;
+    using (SHA512 shaM = new SHA512Managed())
+    {
+        hashByte = shaM.ComputeHash(byt);
+    }
+
+    // convert hash into hexadecimal string
+    var hexHash = BitConverter.ToString(hashByte).Replace("-", "");
+
+    // get unsigned 32 integer from first 8 chars of hash
+    var hex8 = hexHash.Substring(0, 8);
+    uint l = Convert.ToUInt32(hex8, 16);
+
+    // get number between 0 and 100 from hash with 2 decimals
+    var num = l / DIVIDER;
+    var fin = Math.Round(num, 2);
+
+    // return result, like 71.28
+    return fin;
+}
